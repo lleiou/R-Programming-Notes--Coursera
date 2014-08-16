@@ -25,6 +25,8 @@ pollutantmean <- function(directory, pollutant, id=1:332 ) {
   length<-length+length(data_frame[!is.na(data_frame)])#去掉所有的NA，生成一个子集，并求均值
   sum<-sum+sum(data_frame[!is.na(data_frame)])
   }
+ 
+ options(digits = 4)
   sum/length
   
 }
