@@ -1,0 +1,30 @@
+pollutantmean <- function(directory, pollutant, id=1:332 ) {
+ id_new<-1:332
+ id_new<-id_new-id_new
+ mean_data<-1:332
+ mean_data<-mean_data-mean_data
+ sum<-0
+ length<-0
+ 
+  for(i in id){
+    
+    if (i<10){
+      id_new[i]<-paste(directory,"/00",i,".csv",sep="")
+    }
+    
+    if (9<i&i<100){
+      id_new[i]<-paste(directory,"/0",i,".csv",sep="")
+    }
+    
+    if (i>99){
+      id_new[i]<-paste(directory,"/",i,".csv",sep="")
+    }
+    
+  data_frame<-data.frame()#创建一个空的数据集用来存储
+  data_frame<-read.csv(id_new[i])[,pollutant]#提取出所需的污染物所在列,此时已经从数据集的格式变成了向量的格式
+  length<-length+length(data_frame[!is.na(data_frame)])#去掉所有的NA，生成一个子集，并求均值
+  sum<-sum+sum(data_frame[!is.na(data_frame)])
+  }
+  sum/length
+  
+}
